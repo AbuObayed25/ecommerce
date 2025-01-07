@@ -11,6 +11,8 @@ class CraftyBay extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       theme:AppThemeData.lightThemeData,
+      darkTheme: AppThemeData.darkThemeData,
+      themeMode: ThemeMode.system,
       routes: {
         '/':(context)=>SplashScreen(),
       },
