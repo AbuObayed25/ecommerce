@@ -13,6 +13,9 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+  final TextEditingController _emailController =TextEditingController();
+  final GlobalKey<FormState> _formkey=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,39 +23,42 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 80,
-                ),
-                AppLogoWidget(),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Welcome Back',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(
-                  'Please Enter Your Email Address',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.grey,
-                      ),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(hintText: 'Enter your email'),
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                SizedBox(height: 8,),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Next'),
-                ),
-              ],
+          child: Form(
+            key: _formkey,
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 80,
+                  ),
+                  AppLogoWidget(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Welcome Back',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Text(
+                    'Please Enter Your Email Address',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Colors.grey,
+                        ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(hintText: 'Enter your email'),
+                    controller: _emailController,
+                  ),
+                  SizedBox(height: 8,),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Next'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
