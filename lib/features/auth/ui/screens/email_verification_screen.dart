@@ -1,4 +1,5 @@
 import 'package:ecommerce/app/app_colors.dart';
+import 'package:ecommerce/features/auth/ui/screens/otp_verification_screen.dart';
 import 'package:ecommerce/features/auth/ui/widgets/AppLogoWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -49,12 +50,26 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     height: 8,
                   ),
                   TextFormField(
-                    decoration: InputDecoration(hintText: 'Enter your email'),
                     controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: InputDecoration(hintText: 'Email Address'),
+                    validator: (String?value){
+                      if(value?.trim().isEmpty?? true){
+                        return'Enter your email';
+                      }
+                      return null;
+                    }
+
                   ),
                   SizedBox(height: 8,),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // if (_formkey.currentState!.validate()){
+                      //
+                      // }
+                      Navigator.pushNamed(context,OtpVerificationScreen.name);
+                    },
                     child: Text('Next'),
                   ),
                 ],
