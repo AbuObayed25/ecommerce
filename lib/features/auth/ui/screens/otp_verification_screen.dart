@@ -3,6 +3,8 @@ import 'package:ecommerce/features/auth/ui/widgets/AppLogoWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
+//otp page
+
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
 
