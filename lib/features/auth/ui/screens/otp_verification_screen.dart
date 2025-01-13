@@ -73,6 +73,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     child: Text('Next'),
                   ),
                   SizedBox(height: 20),
+                  //do with set state,GetX
                   RichText(
                     text: TextSpan(
                         text: 'This code will be expired in ',style: TextStyle(color: Colors.grey),
