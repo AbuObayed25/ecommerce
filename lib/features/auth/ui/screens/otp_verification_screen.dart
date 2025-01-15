@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:ecommerce/app/app_colors.dart';
 import 'package:ecommerce/features/auth/ui/widgets/AppLogoWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
+import 'package:get/get.dart';
 //otp page
 
 class OtpVerificationScreen extends StatefulWidget {
@@ -17,6 +20,22 @@ class OtpVerificationScreen extends StatefulWidget {
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final TextEditingController _otpController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final RxInt _remainingTime = 120.obs;
+
+  @override
+  void initState() {
+    super.initState();
+    _startResendCodeTimer();
+  }
+
+  void _startResendCodeTimer() {
+    Timer.periodic(
+      const Duration(seconds: 1),
+      (t) {
+        _remainingTime.value = _remainingTime.value - t.tick;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +49,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   ),
-                  AppLogoWidget(),
-                  SizedBox(
+                  const AppLogoWidget(),
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -42,19 +61,19 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
-                    'A 4 digit OTP code has been sent ',
+                    'A 6 digit OTP code has been sent ',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Colors.grey,
                         ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   PinCodeTextField(
                     length: 6,
                     obscureText: false,
                     animationType: AnimationType.fade,
-                    animationDuration: Duration(milliseconds: 300),
+                    animationDuration: const Duration(milliseconds: 300),
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
                       activeColor: AppColors.themecolor,
@@ -65,23 +84,38 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     appContext: context,
                     controller: _otpController,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('Next'),
+                    child: const Text('Next'),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
+
                   //do with set state,GetX
-                  RichText(
-                    text: TextSpan(
-                        text: 'This code will be expired in ',style: TextStyle(color: Colors.grey),
-                    children: [
-                      TextSpan(
-                        text: '120s',style: TextStyle(color: AppColors.themecolor)
-                      )
-                    ],),
+                  Obx(
+                    () => RichText(
+                      text: TextSpan(
+                        text: 'This code will be expired in ',
+                        style: const TextStyle(color: Colors.grey),
+                        children: [
+                          TextSpan(
+                              text: '${_remainingTime}s',
+                              style:
+                                  const TextStyle(color: AppColors.themecolor))
+                        ],
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Resend Code',
+                      style: TextStyle(
+                        color: AppColors.themecolor,
+                      ),
+                    ),
                   ),
                 ],
               ),
