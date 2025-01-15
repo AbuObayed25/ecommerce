@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:get/get.dart';
+
+import 'complete_profile_screen.dart';
 //otp page
 
 class OtpVerificationScreen extends StatefulWidget {
@@ -97,7 +99,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     height: 8,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, CompleteProfileScreen.name);
+                    },
                     child: const Text('Next'),
                   ),
                   const SizedBox(height: 20),

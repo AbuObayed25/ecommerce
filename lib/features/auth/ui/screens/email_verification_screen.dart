@@ -1,4 +1,5 @@
 import 'package:ecommerce/app/app_colors.dart';
+import 'package:ecommerce/features/auth/ui/screens/complete_profile_screen.dart';
 import 'package:ecommerce/features/auth/ui/screens/otp_verification_screen.dart';
 import 'package:ecommerce/features/auth/ui/widgets/AppLogoWidget.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,8 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
-  final TextEditingController _emailController =TextEditingController();
-  final GlobalKey<FormState> _formkey=GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +30,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   ),
-                  AppLogoWidget(),
-                  SizedBox(
+                  const AppLogoWidget(),
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
@@ -46,31 +47,29 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                           color: Colors.grey,
                         ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: InputDecoration(hintText: 'Email Address'),
-                    validator: (String?value){
-                      if(value?.trim().isEmpty?? true){
-                        return'Enter your email';
-                      }
-                      return null;
-                    }
-
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration:
+                          const InputDecoration(hintText: 'Email Address'),
+                      validator: (String? value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Enter your email';
+                        }
+                        return null;
+                      }),
+                  const SizedBox(
+                    height: 8,
                   ),
-                  SizedBox(height: 8,),
                   ElevatedButton(
                     onPressed: () {
-                      // if (_formkey.currentState!.validate()){
-                      //
-                      // }
-                      Navigator.pushNamed(context,OtpVerificationScreen.name);
+                      Navigator.pushNamed(context, OtpVerificationScreen.name);
                     },
-                    child: Text('Next'),
+                    child: const Text('Next'),
                   ),
                 ],
               ),
