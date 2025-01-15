@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce/app/app_colors.dart';
+import 'package:ecommerce/app/app_constants.dart';
 import 'package:ecommerce/features/auth/ui/widgets/AppLogoWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,9 @@ class OtpVerificationScreen extends StatefulWidget {
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final TextEditingController _otpController = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  final RxInt _remainingTime = 120.obs;
+  final RxInt _remainingTimer = AppConstants.resendOtpTimeOut.obs;
+  late Timer timer;
+  final RxBool _enableResendCodeButton = false.obs;
 
   @override
   void initState() {
@@ -29,10 +32,16 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   void _startResendCodeTimer() {
-    Timer.periodic(
+    _enableResendCodeButton.value = false;
+    _remainingTimer.value = AppConstants.resendOtpTimeOut;
+    timer = Timer.periodic(
       const Duration(seconds: 1),
       (t) {
-        _remainingTime.value = _remainingTime.value - t.tick;
+        _remainingTimer.value--;
+        if (_remainingTimer.value == 0) {
+          t.cancel();
+          _enableResendCodeButton.value = true;
+        }
       },
     );
   }
@@ -95,25 +104,35 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                   //do with set state,GetX
                   Obx(
-                    () => RichText(
-                      text: TextSpan(
-                        text: 'This code will be expired in ',
-                        style: const TextStyle(color: Colors.grey),
-                        children: [
-                          TextSpan(
-                              text: '${_remainingTime}s',
-                              style:
-                                  const TextStyle(color: AppColors.themecolor))
-                        ],
+                    () => Visibility(
+                      visible: !_enableResendCodeButton.value,
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'This code will be expired in ',
+                          style: const TextStyle(color: Colors.grey),
+                          children: [
+                            TextSpan(
+                                text: '${_remainingTimer}s',
+                                style: const TextStyle(
+                                    color: AppColors.themecolor))
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Resend Code',
-                      style: TextStyle(
-                        color: AppColors.themecolor,
+                  Obx(
+                    () => Visibility(
+                      visible: _enableResendCodeButton.value,
+                      child: TextButton(
+                        onPressed: () {
+                          _startResendCodeTimer();
+                        },
+                        child: const Text(
+                          'Resend Code',
+                          style: TextStyle(
+                            color: AppColors.themecolor,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -124,5 +143,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 }
