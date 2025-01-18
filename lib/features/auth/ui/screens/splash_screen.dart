@@ -1,5 +1,7 @@
 import 'package:ecommerce/app/assets_path.dart';
 import 'package:ecommerce/features/auth/ui/screens/email_verification_screen.dart';
+import 'package:ecommerce/features/common/ui/screens/main_bottom_nav_screen.dart';
+import 'package:ecommerce/features/home/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -24,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(
       Duration(seconds: 2),
     );
-    Navigator.pushReplacementNamed(context, EmailVerificationScreen.name);
+    Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
   }
 
   @override
