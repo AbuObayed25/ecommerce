@@ -1,13 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce/app/app_colors.dart';
 import 'package:ecommerce/app/assets_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../widgets/app_bar_icon_button.dart';
 import '../widgets/category_item_widget.dart';
 import '../widgets/home_carousel_slider.dart';
 import '../widgets/home_section_header.dart';
+import '../widgets/product_item_widget.dart';
 import '../widgets/product_search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -43,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
               HomeCarouselSlider(),
               const SizedBox(height: 16),
               HomeSectionHeader(
-                title:'Category',
-                onTap: (){},
+                title: 'Category',
+                onTap: () {},
               ),
               const SizedBox(height: 16),
               SingleChildScrollView(
@@ -55,8 +53,36 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 16),
               HomeSectionHeader(
-                title:'Popular',
-                onTap: (){},
+                title: 'Popular',
+                onTap: () {},
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: _getProductList(),
+                ),
+              ),
+              const SizedBox(height: 16),
+              HomeSectionHeader(
+                title: 'Special',
+                onTap: () {},
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: _getProductList(),
+                ),
+              ),
+              const SizedBox(height: 16),
+              HomeSectionHeader(
+                title: 'New',
+                onTap: () {},
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: _getProductList(),
+                ),
               ),
             ],
           ),
@@ -65,14 +91,26 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List <Widget>_getCategoryList(){
-    List<Widget> categoryList=[];
-    for(int i=0;i<17;i++){
-      categoryList.add(
-        const Padding(padding:EdgeInsets.only(right: 16),
-        child: CategoryItemWidget(),)
-      );
-    }return categoryList;
+  List<Widget> _getCategoryList() {
+    List<Widget> categoryList = [];
+    for (int i = 0; i < 17; i++) {
+      categoryList.add(const Padding(
+        padding: EdgeInsets.only(right: 16),
+        child: CategoryItemWidget(),
+      ));
+    }
+    return categoryList;
+  }
+
+  List<Widget> _getProductList() {
+    List<Widget> productList = [];
+    for (int i = 0; i < 17; i++) {
+      productList.add(const Padding(
+        padding: EdgeInsets.only(right: 16),
+        child: ProductItemWidget(),
+      ));
+    }
+    return productList;
   }
 
   AppBar _buildAppBar() {
@@ -99,7 +137,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-
-
