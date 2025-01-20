@@ -12,15 +12,15 @@ class CategoryItemWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: AppColors.themecolor.withOpacity(.1),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(Icons.computer,color: AppColors.themecolor),
+          child: const Icon(Icons.computer,color: AppColors.themecolor),
         ),
         const SizedBox(height: 4),
-        Text('Electronics',style: TextStyle(
+        const Text('Electronics',style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w500,
           color: AppColors.themecolor,
