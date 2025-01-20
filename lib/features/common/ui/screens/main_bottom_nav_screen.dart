@@ -1,12 +1,13 @@
+import 'package:ecommerce/features/category/ui/screens/category_list_screen.dart';
 import 'package:ecommerce/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../home/ui/screens/home_screen.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
+
   static const String name = '/Main_Bottom_nav_screen';
 
   @override
@@ -14,9 +15,11 @@ class MainBottomNavScreen extends StatefulWidget {
 }
 
 class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
-  final List<Widget> _screens=[
+  final List<Widget> _screens = [
     HomeScreen(),
+    CategoryListScreen(),
   ];
+
   // final MainBottomNavController bottomNavController =
   //     Get.find<MainBottomNavController>();
 
