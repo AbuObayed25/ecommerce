@@ -11,29 +11,19 @@ class CategoryListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Category List'),
+        backgroundColor: Colors.white,
       ),
       body: GridView.builder(
         itemCount: 17,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 4,
-          mainAxisSpacing: 16,
+          crossAxisCount: 4,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
         ),
-        itemBuilder: (context,index) {
-          return CategoryListScreen();
+        itemBuilder: (context, index) {
+          return CategoryItemWidget();
         },
       ),
-      // body: Column(
-      //   children: [
-      //     Center(
-      //       child: Padding(
-      //         padding: const EdgeInsets.all(8.0),
-      //         child: Text('Dhaka , Bangladesh'),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-
     );
   }
 }
