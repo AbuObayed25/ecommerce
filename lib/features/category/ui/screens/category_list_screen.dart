@@ -1,6 +1,6 @@
 import 'package:ecommerce/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce/features/home/ui/widgets/category_item_widget.dart';
+import 'package:ecommerce/features/common/ui/widgets/category_item_widget.dart';
 import 'package:get/get.dart';
 
 class CategoryListScreen extends StatelessWidget {
