@@ -10,6 +10,8 @@ import '../widgets/AppLogoWidget.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
+  static const String name = '/';
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -28,6 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
     );
     Navigator.pushReplacementNamed(context, MainBottomNavScreen.name);
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,5 +53,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-
