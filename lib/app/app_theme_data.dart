@@ -56,7 +56,7 @@ class AppThemeData {
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.black,
         elevation: 2,
-      ),
+      ), 
     );
   }
 }
