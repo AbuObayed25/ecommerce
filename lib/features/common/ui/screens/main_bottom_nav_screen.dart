@@ -2,7 +2,6 @@ import 'package:ecommerce/features/category/ui/screens/category_list_screen.dart
 import 'package:ecommerce/features/common/ui/controllers/main_bottom_nav_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../home/ui/screens/home_screen.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
@@ -33,7 +32,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
             selectedIndex: bottomNavController.selectedIndex,
             onDestinationSelected: bottomNavController.changeIndex,
             destinations: const [
-              NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+              NavigationDestination(icon: Icon(Icons.home), label: 'Home'),//NavigationDestination
               NavigationDestination(
                   icon: Icon(Icons.category), label: 'Categories'),
               NavigationDestination(
